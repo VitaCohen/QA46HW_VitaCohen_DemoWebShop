@@ -1,6 +1,5 @@
 package com.demowebshop.test;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -10,33 +9,15 @@ public class CreateAccountTests extends TestBase {
     public void newUserRegistrationPositiveTest() {
 
         //click on Register link
-        click(By.cssSelector("[href='/register']"));
-
+        clickOnRegisterLink();
         // gender(male or female)
-
-
         // enter name
-        type(By.name("FirstName"), "Viky");
-
-        //enter last name
-        type(By.name("LastName"), "Vays");
-
-        // enter email
-        type(By.name("Email"), "vik444@gmail.com");
-
-
-        // enter password
-        type(By.name("Password"), "123456Aa!");
-
-        // enter confirm password
-        type(By.name("ConfirmPassword"), "123456Aa!");
-
+        fillRegisterLoginForm(new User().setName("Viky").setLastName("Vays")
+                .setEmail("vik11312@gmail.com").setPassword("123456Aa!"));
         // click on Registration button
-        click(By.name("register-button"));
-
-
+        clickOnRegistrationButton();
         // verify SignOut button is displayed
-        Assert.assertTrue(isElementPresents(By.cssSelector("[href='/logout']")));
+        Assert.assertTrue(isSignOutButtonPresent());
 
 
     }
