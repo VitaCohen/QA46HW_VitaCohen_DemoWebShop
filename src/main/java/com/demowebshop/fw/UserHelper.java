@@ -33,4 +33,12 @@ public class UserHelper extends BaseHelper {
     public boolean isSignOutButtonPresent() {
         return isElementPresents(By.cssSelector("[href='/logout']"));
     }
+
+    public boolean isRegisterLinkPresents() {
+        return isElementPresents(By.cssSelector("[href='/register']"));
+    }
+
+    public void clikOnLogOutButton() {
+        click(By.cssSelector("[href='/logout']"));
+    }
 }
