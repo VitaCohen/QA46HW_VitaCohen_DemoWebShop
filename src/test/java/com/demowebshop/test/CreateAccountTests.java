@@ -24,7 +24,7 @@ public class CreateAccountTests extends TestBase {
             // gender(male or female)
             // enter name
             app.getUser().fillRegisterLoginForm(new User().setName("Viky").setLastName("Vays")
-                    .setEmail("vik1498@gmail.com").setPassword("13456Aa!"));
+                    .setEmail("vik1488888@gmail.com").setPassword("13456Aa!"));
             // click on Registration button
             app.getUser().clickOnRegistrationButton();
             // verify SignOut button is displayed
