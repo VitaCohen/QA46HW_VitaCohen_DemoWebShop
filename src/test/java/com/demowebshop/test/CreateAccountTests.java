@@ -1,9 +1,17 @@
 package com.demowebshop.test;
 
+import com.demowebshop.data.UserData;
 import com.demowebshop.models.User;
+import com.demowebshop.utils.DataProviders;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class CreateAccountTests extends TestBase {
 
@@ -16,20 +24,54 @@ public class CreateAccountTests extends TestBase {
         }
     }
 
-        @Test
-        public void newUserRegistrationPositiveTest() {
+    @Test
+    public void newUserRegistrationPositiveTest() {
 
-            //click on Register link
-            app.getUser().clickOnRegisterLink();
-            // gender(male or female)
-            // enter name
-            app.getUser().fillRegisterLoginForm(new User().setName("Viky").setLastName("Vays")
-                    .setEmail("vik1@gmail.com").setPassword("13456Aa!"));
-            // click on Registration button
-            app.getUser().clickOnRegistrationButton();
-            // verify SignOut button is displayed
-            Assert.assertTrue(app.getUser().isSignOutButtonPresent());
-        }
+        //click on Register link
+        app.getUser().clickOnRegisterLink();
+        // gender(male or female)
+        // enter name
+        app.getUser().fillRegisterLoginForm(new User().setName(UserData.NAME).setLastName(UserData.LASTNAME)
+                .setEmail(UserData.EMAIL).setPassword(UserData.PASSWORD));
+        // click on Registration button
+        app.getUser().clickOnRegistrationButton();
+        // verify SignOut button is displayed
+        Assert.assertTrue(app.getUser().isSignOutButtonPresent());
+    }
 
+
+    @Test(dataProvider = "addNewUser", dataProviderClass = DataProviders.class)
+    public void newUserRegistrationPositiveFromDataProviderTest(String name, String lastName,
+                                                                String email, String password) {
+
+        //click on Register link
+        app.getUser().clickOnRegisterLink();
+        // gender(male or female)
+        // enter name
+        app.getUser().fillRegisterLoginForm(new User()
+                .setName(name).setLastName(lastName)
+                .setEmail(email).setPassword(password));
+        // click on Registration button
+        app.getUser().clickOnRegistrationButton();
+        // verify SignOut button is displayed
+        Assert.assertTrue(app.getUser().isSignOutButtonPresent());
 
     }
+
+    @Test(dataProvider = "addNewUserWithCsv", dataProviderClass = DataProviders.class)
+    public void newUserRegistrationPositiveFromDataProviderWithCsvTest(User user) {
+
+        //click on Register link
+        app.getUser().clickOnRegisterLink();
+        // gender(male or female)
+        // enter name
+        app.getUser().fillRegisterLoginForm(user);
+        // click on Registration button
+        app.getUser().clickOnRegistrationButton();
+        // verify SignOut button is displayed
+        Assert.assertTrue(app.getUser().isSignOutButtonPresent());
+
+    }
+
+
+}
