@@ -5,5 +5,5 @@ public class UserData {
     public static final String NAME="Viky";
     public static final String LASTNAME="Vays";
     public static final String EMAIL="vik1@gmail.com";
-    public static final String PASSWORD="1345883Aa!";
+    public static final String PASSWORD="174Aa!";
 }
